@@ -1,0 +1,45 @@
+.invite-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.invite-item {
+  padding: 1rem 0;
+  border-bottom: 2px dashed #f472b6; /* línea separadora */
+}
+
+.invite-item:last-child {
+  border-bottom: none;
+}
+
+.row {
+  margin-bottom: 0.4rem;
+}
+
+.family {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ec4899;
+}
+
+.status {
+  font-size: 0.95rem;
+}
+
+.confirmed {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.pending {
+  color: #ca8a04;
+  font-weight: 600;
+}
+
+.counts {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.95rem;
+  color: #374151;
+}

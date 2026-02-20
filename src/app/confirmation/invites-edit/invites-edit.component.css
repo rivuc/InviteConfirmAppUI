@@ -1,0 +1,459 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fde68a, #fbcfe8, #bfdbfe);
+  font-family: 'Baloo 2', cursive;
+  /* padding: 1.5rem; */
+  overflow: hidden;
+
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #c9c7f7 0%,
+    /* lavanda suave */ #b8d8ff 35%,
+    /* azul hielo */ #e6c8ff 65%,
+    /* lila claro */ #ffc6e9 100% /* rosa pastel */
+  );
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #ec4899;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.form {
+  background: #fff;
+  padding: 1.8rem;
+  border-radius: 22px;
+  border: 4px dashed #f472b6;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 20px;
+}
+
+label {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+select {
+  padding: 0.8rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 14px;
+  border: 3px solid #a5b4fc;
+  background: #eef2ff;
+}
+
+.save-button {
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(135deg, #34d399, #22c55e);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 👇 OCULTOS AL CARGAR */
+.floating-emojis {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 👇 SE ACTIVAN DESPUÉS */
+.floating-emojis.visible {
+  opacity: 1;
+}
+
+/* 🎈 Emojis flotantes */
+.floating-emojis span {
+  position: absolute;
+  font-size: 1.6rem;
+  animation: float 6s infinite ease-in-out;
+  animation-fill-mode: backwards; /* 👈 CLAVE */
+}
+
+.floating-emojis span:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+.floating-emojis span:nth-child(2) {
+  left: 30%;
+  animation-delay: 1s;
+}
+.floating-emojis span:nth-child(3) {
+  left: 50%;
+  animation-delay: 2s;
+}
+.floating-emojis span:nth-child(4) {
+  left: 70%;
+  animation-delay: 3s;
+}
+.floating-emojis span:nth-child(5) {
+  left: 90%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0% {
+    top: 100%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: -10%;
+    opacity: 0;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.save-button:disabled {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af); /* gris suave */
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+  transform: none;
+}
+
+.save-button {
+  transition: all 0.25s ease;
+}
+
+.confirmation-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #15803d;
+  background: linear-gradient(135deg, #bbf7d0, #fef3c7);
+  border-radius: 18px;
+  border: 3px dashed #4ade80;
+  animation: popIn 0.5s ease-out;
+}
+
+/* Animación amigable */
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #ec4899;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.balloon {
+  font-size: 3rem;
+  animation: floatBalloon 2s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes floatBalloon {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+label {
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+.kpop-banner {
+  text-align: center;
+  padding: 1px;
+  margin-bottom: 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff4fd8, #8f5cff);
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.kpop-banner h1 {
+  margin: 0 0 5px;
+  font-size: 25px;
+  letter-spacing: 1px;
+}
+
+.kpop-banner p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.kpop-button {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+
+  /* Degradado tipo azul hielo */
+  background: linear-gradient(135deg, #9be7ff 0%, #5cd4ff 30%, #2bbcff 60%, #6fe3ff 100%);
+
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 4px 15px rgba(0, 183, 255, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.4);
+
+  transition: all 0.3s ease;
+  border: 2px solid #33cfff;
+}
+
+.kpop-button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(0, 183, 255, 0.6),
+    inset 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #cfc9ff, #bde0ff, #e3ccff, #ffd1f4);
+  color: #2b2b2b;
+}
+
+.hero1 {
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    inset 0 0 30px rgba(255, 255, 255, 0.2);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}*/
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(230, 210, 255, 0));
+  z-index: 0;
+}
+
+.hero::before {
+  top: -60px;
+  left: -60px;
+}
+
+.hero::after {
+  bottom: -60px;
+  right: -60px;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  color: #0729c0;
+
+  border-radius: 18px;
+}
+
+.hero p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: auto;
+  opacity: 0.95;
+}
+
+.details {
+  text-align: center;
+  padding: 0px 20px;
+}
+
+.details h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #5a8dff;
+}
+
+.info-box {
+  background: white;
+  max-width: 500px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.6s ease,
+    opacity 0.8s ease;
+
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+}
+
+/* Cuando se activan */
+.gallery img.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover elegante */
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.cta {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.cta button {
+  padding: 14px 35px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #9be7ff, #33cfff, #1faeff);
+  color: white;
+  box-shadow: 0 6px 20px rgba(0, 183, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cta button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 183, 255, 0.6);
+}
+
+footer {
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.hero-text {
+  font-size: 20px;
+  max-width: 620px;
+  margin: 25px auto 0 auto;
+  line-height: 1.9;
+
+  font-weight: 700; /* más negrilla */
+
+  color: #ffffff; /* blanco para mejor contraste */
+
+  text-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.45),
+    0 0 12px rgba(90, 141, 255, 0.5);
+
+  border-radius: 18px;
+
+  transition: all 0.3s ease;
+}
+
+.party-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.party {
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 2.3 / 2;
+
+  background-image: url('../../../../public/img/5anios.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 30px; /* bordes redondeados elegantes */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* sombra suave */
+}

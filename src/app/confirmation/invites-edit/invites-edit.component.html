@@ -1,0 +1,104 @@
+<section class="party-container">
+  <div class="party"></div>
+</section>
+
+<!-- HERO -->
+<section class="hero1">
+  <p class="hero-text">
+    🎶 ¡Te invitamos a que nos acompañes para festejar el cumpleaños de nuestra pequeña guerrera que
+    celebrará su día especial con ritmo, luces y mucha diversion 🎉.<br />
+    ✨ Sabes que juntos brillaremos, ¡seremos, seremos dorados! 👑
+  </p>
+</section>
+
+<!-- DETALLES -->
+<section class="details">
+  <h2>✨ Detalles del Evento ✨</h2>
+  <div class="info-box">
+    📅 Fecha: 23 de Agosto<br />
+    ⏰ Hora: 3:00 PM<br />
+    📍 Lugar: Jardín de Fiestas "Totem"<br />
+    🌍
+    <a href="https://maps.app.goo.gl/d5JzjtAuAah7WW129">
+      Direccion: Av. Inglaterra 5248, Jardines de la Patria, 45110 Zapopan, Jal.</a
+    >
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery">
+  <!-- Cambia estas imágenes por las tuyas dentro de /public -->
+  <img
+    src="https://i0.wp.com/xiahpop.com/wp-content/uploads/2025/06/kpop-demon-hunter.jpg?fit=1200%2C668&ssl=1"
+    alt="Guerrera Kpop"
+    class="reveal"
+  />
+  <img
+    src="https://cdn.milenio.com/uploads/media/2025/10/09/guerreras-k-pop-convertido-pelicula.jpg"
+    alt="Guerrera Kpop"
+    class="reveal"
+  />
+  <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN1n9K1bSQ9uHhN5Ei942KEsVmCo-c2g-epA&s"
+    alt="Guerrera Kpop"
+    class="reveal"
+  />
+</section>
+
+<footer></footer>
+
+<div class="container">
+  <!-- Emojis flotantes -->
+  <div class="floating-emojis" aria-hidden="true">
+    <span>🎈</span>
+    <span>🎉</span>
+    <span>🧁</span>
+    <span>🎂</span>
+    <span>🎁</span>
+  </div>
+  @if (isLoading()) {
+    <!-- 🎈 Loader infantil -->
+    <div class="loader">
+      <div class="balloon">🎈</div>
+      <p>Cargando...</p>
+    </div>
+  } @else if (showConfirmation()) {
+    <section class="kpop-banner">
+      <h1 [innerHTML]="confirmationText()"></h1>
+    </section>
+  } @else {
+    <section class="kpop-banner">
+      <h1>Hola {{ invite()?.family }}, confirma tu asistencia</h1>
+    </section>
+
+    @if (!showConfirmation()) {
+      <div class="form">
+        <div class="form-group">
+          <label>Adultos</label>
+          <select [(ngModel)]="adults" required>
+            <option value="" disabled>Selecciona</option>
+            @for (a of allowedAdults; track a) {
+              <option [value]="a">{{ a }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Niños</label>
+          <select [(ngModel)]="children" required>
+            <option value="" disabled>Selecciona</option>
+            @for (a of allowedChildren; track a) {
+              <option [value]="a">{{ a }}</option>
+            }
+          </select>
+        </div>
+
+        <button class="kpop-button" (click)="save()" [disabled]="!adults || !children">
+          Confirmo Asistencia!
+          <br />
+          <img src="img/rumi.png" class="emoji" alt="Kpop Emoji" />
+        </button>
+      </div>
+    }
+  }
+</div>

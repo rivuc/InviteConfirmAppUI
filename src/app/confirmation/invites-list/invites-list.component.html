@@ -1,0 +1,40 @@
+<div class="list-container">
+  <h2 class="title">📋 Lista de Invitados</h2>
+
+  @if (loading()) {
+    <div class="loader">🎈 Cargando invitados...</div>
+  }
+  @if (!loading() && error()) {
+    <div class="error">❌ {{ error() }}</div>
+  }
+  @if (!loading() && !error()) {
+    <ul class="invite-list">
+      @for (invite of invites(); track invite.id) {
+        <li class="invite-item compact">
+          <span class="family">🎉 {{ invite.family }}</span>
+
+          <span class="status">
+            @if (invite.isConfirmed) {
+              <span class="confirmed"> ✅ {{ invite.updatedAt | date: 'dd/MM/yyyy HH:mm' }} </span>
+            } @else {
+              <span class="pending">⏳ Pendiente</span>
+            }
+          </span>
+
+          <span class="counts">
+            👨Adultos: {{ invite.isConfirmed ? invite.adults : 0 }} · 🧒Niños:
+            {{ invite.isConfirmed ? invite.children : 0 }} · 🪑Mesa:
+            {{ invite.mesa }}
+          </span>
+        </li>
+      }
+    </ul>
+
+    <!-- Totales -->
+    <div class="totals">
+      <strong>🎊 Totales confirmados</strong>
+      <div>👨 Adultos: {{ totalAdults() }}</div>
+      <div>🧒 Niños: {{ totalChildren() }}</div>
+    </div>
+  }
+</div>
