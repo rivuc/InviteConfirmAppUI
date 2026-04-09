@@ -43,3 +43,10 @@
   font-size: 0.95rem;
   color: #374151;
 }
+
+.share-icon {
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}

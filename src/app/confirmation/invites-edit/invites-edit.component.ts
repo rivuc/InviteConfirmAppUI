@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InvitesService } from '../invites.service';
@@ -23,6 +31,9 @@ export class InvitesEditComponent implements OnInit, AfterViewInit {
   invite = signal<InviteData | null>(null);
   private route = inject(ActivatedRoute);
   id = this.route.snapshot.paramMap.get('id');
+  musicPlaying = false;
+  @ViewChild('music') music!: ElementRef<HTMLAudioElement>;
+  audio: HTMLAudioElement | null = null;
 
   constructor(
     private invitesService: InvitesService,
@@ -30,7 +41,6 @@ export class InvitesEditComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    console.log('oninit: ' + this.id);
     this.invitesService.getInvite(this.id!).subscribe((data) => {
       this.invite.set(data);
       if (data?.isConfirmed) {
@@ -46,7 +56,6 @@ export class InvitesEditComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Espera a que Angular pinte la vista
     setTimeout(() => {
       document.querySelector('.floating-emojis')?.classList.add('visible');
 
@@ -65,6 +74,51 @@ export class InvitesEditComponent implements OnInit, AfterViewInit {
 
       images.forEach((img: Element) => observer.observe(img));
     }, 0);
+
+    this.audio = this.music.nativeElement;
+    this.audio.currentTime = 61.6;
+  }
+
+  loadMusic() {
+    const startMusic = () => {
+      console.log(navigator.userActivation.hasBeenActive);
+      if (navigator.userActivation.hasBeenActive) {
+        const audio = this.music.nativeElement;
+        audio.currentTime = 61.6;
+        audio.volume = 0.25;
+        audio
+          .play()
+          .then(() => {
+            removeListeners();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    };
+
+    const removeListeners = () => {
+      window.removeEventListener('click', startMusic);
+      window.removeEventListener('touchstart', startMusic);
+      window.removeEventListener('scroll', startMusic);
+    };
+
+    window.addEventListener('click', startMusic);
+    window.addEventListener('touchstart', startMusic);
+    window.addEventListener('scroll', startMusic);
+  }
+
+  toggleMusic() {
+    if (this.musicPlaying) {
+      this.audio!.pause();
+      this.musicPlaying = false;
+    } else {
+      // this.audio!.volume = 0.25;
+      this.audio!.play().catch(() => {
+        console.log('Error playing audio');
+      });
+      this.musicPlaying = true;
+    }
   }
 
   save() {
@@ -81,6 +135,9 @@ export class InvitesEditComponent implements OnInit, AfterViewInit {
       .subscribe(() => {
         this.setConfirmationMsg(this.adults!, this.children!, this.invite()?.family!);
         this.showConfirmation.set(true);
+        if (!this.musicPlaying) {
+          this.toggleMusic();
+        }
       });
   }
 

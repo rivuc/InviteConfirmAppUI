@@ -1,3 +1,12 @@
+<audio #music preload="none">
+  <!--cambiarlo para usar tu propio audio -->
+  <source src="/music/dorada.mp3" type="audio/mpeg" />
+</audio>
+
+<button class="music-btn" (click)="toggleMusic()">
+  {{ musicPlaying ? '🔊' : '🔇' }}
+</button>
+
 <section class="party-container">
   <div class="party"></div>
 </section>
@@ -11,7 +20,6 @@
   </p>
 </section>
 
-<!-- DETALLES -->
 <section class="details">
   <h2>✨ Detalles del Evento ✨</h2>
   <div class="info-box">
@@ -27,7 +35,6 @@
 
 <!-- GALERÍA -->
 <section class="gallery">
-  <!-- Cambia estas imágenes por las tuyas dentro de /public -->
   <img
     src="https://i0.wp.com/xiahpop.com/wp-content/uploads/2025/06/kpop-demon-hunter.jpg?fit=1200%2C668&ssl=1"
     alt="Guerrera Kpop"
@@ -57,7 +64,6 @@
     <span>🎁</span>
   </div>
   @if (isLoading()) {
-    <!-- 🎈 Loader infantil -->
     <div class="loader">
       <div class="balloon">🎈</div>
       <p>Cargando...</p>

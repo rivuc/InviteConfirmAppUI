@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { InvitesEditComponent } from './confirmation/invites-edit/invites-edit.component';
 
 @Component({
   selector: 'app-root',

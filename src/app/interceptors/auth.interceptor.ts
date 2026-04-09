@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth/auth.service';
 import { switchMap, of } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
@@ -13,12 +13,12 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  // 1️⃣ Token aún válido → úsalo
+  // 1️⃣ Token aún válido → Usarlo
   if (token) {
     return next(
       req.clone({
         setHeaders: { Authorization: `Bearer ${token}` },
-      })
+      }),
     );
   }
   // 2️⃣ Token expirado o inexistente → pedir uno nuevo
@@ -27,8 +27,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       next(
         req.clone({
           setHeaders: { Authorization: `Bearer ${newToken}` },
-        })
-      )
-    )
+        }),
+      ),
+    ),
   );
 };

@@ -19,6 +19,7 @@
             } @else {
               <span class="pending">⏳ Pendiente</span>
             }
+            <span class="share-icon" (click)="share(invite)">🔗</span>
           </span>
 
           <span class="counts">
@@ -31,10 +32,19 @@
     </ul>
 
     <!-- Totales -->
+    <!-- Totales -->
+    <div class="totals">
+      <strong>🎊 Totales invitados</strong>
+      <div>👨 Adultos: {{ invitedAdults() }}</div>
+      <div>🧒 Niños: {{ invitedChildren() }}</div>
+      <div>Total: {{ invitedChildren() + invitedAdults() }}</div>
+    </div>
+    ---------------------------------
     <div class="totals">
       <strong>🎊 Totales confirmados</strong>
       <div>👨 Adultos: {{ totalAdults() }}</div>
       <div>🧒 Niños: {{ totalChildren() }}</div>
+      <div>Total: {{ totalAdults() + totalChildren() }}</div>
     </div>
   }
 </div>

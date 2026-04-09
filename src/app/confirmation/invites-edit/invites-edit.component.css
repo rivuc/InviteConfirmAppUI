@@ -245,6 +245,17 @@ label {
   border: 2px solid #33cfff;
 }
 
+.kpop-button:disabled {
+  background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+  color: #7f8c8d;
+  cursor: not-allowed;
+
+  box-shadow: none;
+  border: 2px solid #b2bec3;
+  filter: grayscale(40%);
+  transform: none;
+}
+
 .kpop-button:hover {
   transform: translateY(-2px);
   box-shadow:
@@ -456,4 +467,31 @@ footer {
 
   border-radius: 30px; /* bordes redondeados elegantes */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* sombra suave */
+}
+
+.music-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(6px);
+
+  z-index: 1000;
 }
