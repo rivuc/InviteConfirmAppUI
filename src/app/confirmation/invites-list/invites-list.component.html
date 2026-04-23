@@ -23,8 +23,8 @@
           </span>
 
           <span class="counts">
-            👨Adultos: {{ invite.isConfirmed ? invite.adults : 0 }} · 🧒Niños:
-            {{ invite.isConfirmed ? invite.children : 0 }} · 🪑Mesa:
+            👨Adultos: {{ invite.adults }}/{{ invite.allowedAdults }} · 🧒Niños:
+            {{ invite.children }}/{{ invite.allowedChildren }} · 🪑Mesa:
             {{ invite.mesa }}
           </span>
         </li>
