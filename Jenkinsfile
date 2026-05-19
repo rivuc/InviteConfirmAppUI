@@ -24,27 +24,24 @@ pipeline {
             }
         }
 		
-        stage('Unit Tests') {
-            steps {
-                sh 'npm run test:ci:coverage'
-            }
-            post {
-                always {
-                    junit(
-                        testResults: 'coverage/junit/TESTS-results.xml',
-                        allowEmptyResults: false
-                    )
-                    publishHTML(target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: 'coverage',
-                        reportFiles: 'index.html',
-                        reportName: 'Coverage Report'
-                    ])
-                }
-            }
-        }
+		stage('Unit Tests') {
+			steps {
+				sh 'npm run test:ci:coverage'
+			}
+			post {
+				always {
+					junit(
+						testResults: 'coverage/junit/TESTS-results.xml',
+						allowEmptyResults: false
+					)
+					recordCoverage(
+						tools: [[parser: 'LCOV', pattern: 'coverage/lcov.info']],
+						id: 'coverage',
+						name: 'Coverage Report'
+					)
+				}
+			}
+		}
 		
         stage('Build') {
             steps {
