@@ -99,10 +99,11 @@ describe('InvitesListComponent', () => {
   it('should show alert if navigator.share not available', () => {
     (navigator as any).share = undefined;
 
-    const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+    const alertMock = vi.fn();
+    vi.stubGlobal('alert', alertMock); // Mejor opción en Vitest
 
     component.share(mockInvites[0]);
 
-    expect(alertSpy).toHaveBeenCalledWith('Tu navegador no soporta compartir 😢');
+    expect(alertMock).toHaveBeenCalledWith('Tu navegador no soporta compartir 😢');
   });
 });
