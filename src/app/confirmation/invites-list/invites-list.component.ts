@@ -56,16 +56,37 @@ export class InvitesListComponent {
   }
 
   share(invite: InviteData) {
+    const invitation = this.getInvitationText(invite);
+
     if (navigator.share) {
       let url = `${environment.uiUrl}invites/${invite.id}`;
       navigator
         .share({
           title: '🎉 Fiesta de Gracielita',
-          text: `¡Hola ${invite.family}, Te invitamos a la fiesta de Gracielita 5 años, te esperamos! 🎂🎈\n\n${url}`,
+          text: invitation,
         })
         .catch((error) => console.log('Error al compartir', error));
     } else {
       alert('Tu navegador no soporta compartir 😢');
     }
+  }
+
+  async copyInvitation(invite: InviteData) {
+    const invitation = this.getInvitationText(invite);
+
+    try {
+      await navigator.clipboard.writeText(invitation);
+
+      alert(`¡Invitación para ${invite.family} copiada ! 🎉`);
+    } catch (error) {
+      console.error('Error al copiar la invitación', error);
+
+      alert('No se pudo copiar la invitación 😢');
+    }
+  }
+
+  private getInvitationText(invite: InviteData): string {
+    const url = `${environment.uiUrl}invites/${invite.id}`;
+    return `¡Hola ${invite.family}, Te invitamos a la fiesta de Gracielita 5 años, te esperamos! 🎂🎈\n\n${url}`;
   }
 }

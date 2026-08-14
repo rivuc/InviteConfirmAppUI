@@ -128,7 +128,7 @@ export class InvitesEditComponent implements OnInit, AfterViewInit {
     this.invitesService
       .saveInvite({
         id: this.invite()?.id!,
-        adults: this.invite()?.adults!,
+        adults: this.adults!,
         children: this.children!,
         isConfirmed: true,
       })
